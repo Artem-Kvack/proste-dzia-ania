@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator</title>
+    <style>
+        h1,
+        h2,
+        h3,
+        h4,
+        p {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+        ul {
+            margin-top: 0;
+            margin-bottom: 0;
+            padding-left: 0;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .link {
+            text-decoration: none;
+        }
+
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            margin: -1px;
+            border: 0;
+            padding: 0;
+            white-space: nowrap;
+            clip-path: inset(100%);
+            clip: rect(0 0 0 0);
+            overflow: hidden;
+        }
+
+        .h-list {
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .h-item {
+            position: absolute;
+            top: 50px;
+        }
+
+        .h-title {
+            text-align: center;
+        }
+
+        .h-item_2 {
+            margin-top: 20px;
+        }
+
+        .h-input {
+            border: none;
+            background-color: whitesmoke;
+            padding: 5px;
+            margin: 5px;
+        }
+
+        .btn-list {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+            gap: 20px;
+        }
+
+        .btn-item {
+            list-style: none;
+        }
+
+       
+
+        .result {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.5em;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="h-title">PROSTE DZIAŁANIA</h1>
+    <ul class="h-list list">
+        <li class="h-item_2">
+            <label for="a">Podaj pierwszą liczbę: </label>
+            <input id="a" type="text" class="h-input">
+        </li>
+        <li class="h-item">
+            <label for="b">Podaj drugą liczbę:</label>
+            <input id="b" type="text" class="h-input"> 
+        </li>
+    </ul>
+
+    <ul class="btn-list list">
+        <li class="btn-item"><button class="btn-button" id="add">DODAWANIE</button></li>
+        <li class="btn-item"><button class="btn-button" id="subtract">ODEJMOWANIE</button></li>
+        <li class="btn-item"><button class="btn-button" id="multiply">MNOŻENIE</button></li>
+        <li class="btn-item"><button class="btn-button" id="divide">DZIELENIE</button></li>
+    </ul>
+
+    <div id="result" class="result"></div>
+
+    <script>
+       
+        function getInputValues() {
+            const a = parseFloat(document.getElementById("a").value);
+            const b = parseFloat(document.getElementById("b").value);
+            if (isNaN(a) || isNaN(b)) {
+                alert("Proszę podać poprawne liczby!");
+                return null;
+            }
+            return { a, b };
+        }
+
+       
+        function displayResult(result) {
+            document.getElementById("result").innerText = "Wynik działania wynosi: " + result;
+        }
+
+        
+        document.getElementById("add").addEventListener("click", function() {
+            const values = getInputValues();
+            if (values) {
+                const result = values.a + values.b;
+                displayResult(result);
+            }
+        });
+
+        document.getElementById("subtract").addEventListener("click", function() {
+            const values = getInputValues();
+            if (values) {
+                const result = values.a - values.b;
+                displayResult(result);
+            }
+        });
+
+        document.getElementById("multiply").addEventListener("click", function() {
+            const values = getInputValues();
+            if (values) {
+                const result = values.a * values.b;
+                displayResult(result);
+            }
+        });
+
+        document.getElementById("divide").addEventListener("click", function() {
+            const values = getInputValues();
+            if (values) {
+                if (values.b === 0) {
+                    alert("Nie można dzielić przez zero!");
+                } else {
+                    const result = values.a / values.b;
+                    displayResult(result);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
